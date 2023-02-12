@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DynamicTable } from '../../dynamic-table.namespace';
 
 @Component({
-    selector: 'app-dynamic-table',
+    selector: 'app-dynamic-table[value][columns]',
     templateUrl: 'dynamic-table.component.html'
 })
 
-export class DynamicTableComponent implements OnInit {
-    constructor() { }
+export class DynamicTableComponent {
+    @Input()
+    public value: DynamicTable.Value[] = [];
 
-    ngOnInit() { }
+    @Input()
+    public columns: DynamicTable.Column[] = [];
+
+    @Input()
+    public title: string = '';
 }

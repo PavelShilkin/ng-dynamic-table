@@ -1,8 +1,20 @@
-<p-table>
+<p-table [value]="value">
     <ng-template pTemplate="caption">
+        {{ title }}
         <ng-content select="[caption]"></ng-content>
     </ng-template>
-    <ng-template pTemplate="body"></ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let column of columns">{{column.header}}</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowValue>
+        <tr>
+            <td *ngFor="let column of columns">
+                {{ rowValue | dynamicTableValue: column }}
+            </td>
+        </tr>
+    </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
             <td>Empty data</td>
