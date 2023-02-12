@@ -6,12 +6,38 @@
   <ng-template pTemplate="header">
     <tr>
       <th *ngFor="let column of columns">{{ column.header }}</th>
+      <th class="text-center w-10rem">
+        <button
+          pTooltip="Создать новую запись"
+          tooltipPosition="left"
+          pButton
+          icon="pi pi-plus"
+          label="Создать"
+          class="p-button-raised"
+        ></button>
+      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowValue>
     <tr>
       <td *ngFor="let column of columns">
         {{ rowValue | dynamicTableValue : column }}
+      </td>
+      <td class="flex justify-content-center gap-2 w-10rem">
+        <button
+          pTooltip="Редактировать запись"
+          tooltipPosition="left"
+          pButton
+          icon="pi pi-pencil"
+          class="p-button-success p-button-raised"
+        ></button>
+        <button
+          pTooltip="Удалить запись"
+          tooltipPosition="left"
+          pButton
+          icon="pi pi-trash"
+          class="p-button-danger p-button-raised"
+        ></button>
       </td>
     </tr>
   </ng-template>
