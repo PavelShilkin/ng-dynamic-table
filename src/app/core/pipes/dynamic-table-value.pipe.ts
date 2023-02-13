@@ -3,9 +3,11 @@ import { DynamicTable } from "../dynamic-table.namespace";
 
 @Pipe({
   name: "dynamicTableValue",
+  pure: false,
 })
 export class DynamicTablePipe implements PipeTransform {
   public transform(value: DynamicTable.Value, column: DynamicTable.Column): string | number {
-    return column.format(value) || "-";
+    const fn = eval(`(function(value) { return ${column.format}})`);
+    return fn(value) || "-";
   }
 }

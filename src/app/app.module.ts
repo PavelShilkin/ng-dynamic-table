@@ -1,3 +1,4 @@
+import { TableConstructorModule } from './constructor/table-constructor.module';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -7,7 +8,7 @@ import { DynamicTableModule } from "./core/dynamic-table.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, DynamicTableModule],
+  imports: [BrowserModule, BrowserAnimationsModule, DynamicTableModule, TableConstructorModule],
   providers: [AppService],
   bootstrap: [AppComponent],
 })

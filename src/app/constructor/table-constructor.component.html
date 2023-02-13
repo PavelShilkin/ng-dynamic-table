@@ -1,0 +1,25 @@
+<h1>Table constructor</h1>
+
+<div>
+    <div>
+        <h3>JSON</h3>
+        <textarea class="col-4" pInputTextarea rows="10" (input)="jsonChange()" [(ngModel)]="jsonData"></textarea>
+    </div>
+
+
+    <div>
+        <h3>Title</h3>
+        <input class="col-4" pInputText type="text">
+    </div>
+
+    <div>
+        <h3>Columns</h3>
+        <app-table-columns-constructor #columns></app-table-columns-constructor>
+    </div>
+
+
+    <div>
+        <h3>Preview</h3>
+        <app-dynamic-table [value]="data" [columns]="columns.columns"></app-dynamic-table>
+    </div>
+</div>
