@@ -7,7 +7,7 @@ import { DynamicTable } from "../dynamic-table.namespace";
 })
 export class DynamicTablePipe implements PipeTransform {
   public transform(value: DynamicTable.Value, column: DynamicTable.Column): string | number {
-    const fn = eval(`(function(value) { return ${column.format}})`);
+    const fn = eval(`(function(value) { return ${column.pathToValue}})`);
     return fn(value) || "-";
   }
 }

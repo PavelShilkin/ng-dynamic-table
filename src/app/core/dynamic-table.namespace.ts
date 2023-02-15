@@ -3,7 +3,7 @@ export namespace DynamicTable {
 
   export interface Column<T extends object = {}> {
     header: string;
-    format: DynamicTable.ColumnFormat<T>;
+    pathToValue: string;
     field?: string;
   }
 

@@ -12,7 +12,7 @@ import { DynamicTable } from "src/app/core/dynamic-table.namespace";
           <label for="colHeader">Header</label>
         </span>
         <span class="p-float-label">
-          <input id="colFormat" pInputText type="text" [(ngModel)]="column.format" />
+          <input id="colFormat" pInputText type="text" [(ngModel)]="column.pathToValue" />
           <label for="colFormat">Format</label>
         </span>
         <span class="p-float-label">
@@ -28,6 +28,6 @@ export class TableColumnsConstructor {
   public columns: DynamicTable.Column[] = [];
 
   public addColumn(): void {
-    this.columns.push({ header: "", format: () => "", field: "" });
+    this.columns.push({ header: "", pathToValue: "", field: "" });
   }
 }

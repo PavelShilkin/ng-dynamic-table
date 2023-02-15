@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { of } from "rxjs";
+import { DynamicForm } from "./core/dynamic-form/dynamic-form.namespace";
 import { DynamicTable } from "./core/dynamic-table.namespace";
 
 interface IExample {
@@ -18,9 +19,13 @@ export class AppService {
   ]);
 
   public columns$ = of<DynamicTable.Column<IExample>[]>([
-    { header: "ID", format: (value) => value.id },
-    { header: "Имя", format: (value) => value.name },
-    { header: "Телефон", format: (value) => value.phone },
-    { header: "Дата", format: (value) => value.date.toLocaleDateString() },
+    { header: "ID", pathToValue: "`${value.id}`" },
+    { header: "Имя", pathToValue: "`${value.name}`" },
+    { header: "Телефон", pathToValue: "`${value.phone}`" },
+    { header: "Дата", pathToValue: "`${value.date.toLocaleDateString()}`" },
+  ]);
+
+  public controls$ = of<DynamicForm.Control[]>([
+    { name: "name", type: DynamicForm.Components.Input, label: "Наименование" },
   ]);
 }
