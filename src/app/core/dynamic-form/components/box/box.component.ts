@@ -4,7 +4,7 @@ import { DynamicForm } from "../../dynamic-form.namespace";
 @Component({
   selector: "app-box",
   template: `
-    <div [class]="config.class">
+    <div [class]="config.styleClass">
       <ng-container [dynamicForm]="config.children"></ng-container>
     </div>
   `,

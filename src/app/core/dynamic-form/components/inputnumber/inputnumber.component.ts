@@ -6,6 +6,7 @@ import { Component, forwardRef, Input } from "@angular/core";
   template: `
     <span class="p-float-label">
       <p-inputNumber
+        class="w-full"
         [id]="id"
         [ngModel]="_value"
         (onInput)="value = $event.value"
@@ -21,6 +22,15 @@ import { Component, forwardRef, Input } from "@angular/core";
       useExisting: forwardRef(() => InputNumberComponent),
       multi: true,
     },
+  ],
+  styles: [
+    `
+      :host ::ng-deep {
+        span.p-inputnumber {
+          width: 100%;
+        }
+      }
+    `,
   ],
 })
 export class InputNumberComponent implements ControlValueAccessor {

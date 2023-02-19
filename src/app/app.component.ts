@@ -5,7 +5,7 @@ import { AppService } from "./app.service";
   selector: "app-root",
   template: `
     <app-dynamic-form
-      class="p-5"
+      [class]="'p-5 m-5 flex flex-column gap-4 surface-100'"
       [controls]="$any(appService.controls$ | async)"
       (onSubmit)="test($event)"
     ></app-dynamic-form>

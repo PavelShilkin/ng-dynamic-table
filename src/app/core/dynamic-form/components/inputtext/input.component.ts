@@ -6,6 +6,7 @@ import { Component, forwardRef, Input } from "@angular/core";
   template: `
     <span class="p-float-label">
       <input
+        class="w-full"
         [id]="id"
         pInputText
         type="text"

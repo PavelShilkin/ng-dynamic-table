@@ -6,6 +6,7 @@ import { Component, forwardRef, Input } from "@angular/core";
   template: `
     <span class="p-float-label">
       <p-calendar
+        styleClass="w-full"
         [id]="id"
         [ngModel]="_value"
         [placeholder]="placeholder"

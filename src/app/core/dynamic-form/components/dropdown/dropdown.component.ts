@@ -6,6 +6,7 @@ import { Component, forwardRef, Input } from "@angular/core";
   template: `
     <span class="p-float-label">
       <p-dropdown
+        styleClass="w-full"
         [id]="id"
         [ngModel]="_value"
         [options]="options"

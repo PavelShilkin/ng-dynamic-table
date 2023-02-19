@@ -26,14 +26,26 @@ export class AppService {
   ]);
 
   public controls$ = of<DynamicForm.Control[]>([
-    { type: DynamicForm.Components.InputText, name: "name", label: "Наименование" },
+    {
+      type: DynamicForm.Components.InputText,
+      name: "name",
+      label: "Наименование",
+    },
     {
       type: DynamicForm.Components.Box,
-      class: "p-4 flex gap-1 surface-100",
+      styleClass: "flex gap-1",
       name: "phoneInfo",
       children: [
-        { type: DynamicForm.Components.InputNumber, name: "phone", label: "Телефон" },
-        { type: DynamicForm.Components.Calendar, name: "date", label: "Дата" },
+        {
+          type: DynamicForm.Components.InputNumber,
+          name: "phone",
+          label: "Телефон",
+        },
+        {
+          type: DynamicForm.Components.Calendar,
+          name: "date",
+          label: "Дата",
+        },
       ],
     },
     {

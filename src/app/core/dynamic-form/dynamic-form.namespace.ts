@@ -8,6 +8,7 @@ export namespace DynamicForm {
     name: string;
     type: Components;
     label?: string;
+    styleClass?: string;
   }
 
   export interface SelectionControl extends BaseControl {
@@ -17,7 +18,6 @@ export namespace DynamicForm {
   }
 
   export interface BoxControl extends BaseControl {
-    class?: string;
     children: Control[];
   }
 

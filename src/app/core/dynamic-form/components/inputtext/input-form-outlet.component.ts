@@ -4,6 +4,7 @@ import { DynamicForm } from "../../dynamic-form.namespace";
 
 @Component({
   template: `<app-input
+    [class]="config.styleClass"
     [id]="config.name"
     [label]="config.label || ''"
     [formControl]="control"
