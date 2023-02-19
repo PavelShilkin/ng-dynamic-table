@@ -1,3 +1,4 @@
+import { DropdownFormOutletComponent } from "./components/dropdown/dropdown-form-outlet.component";
 import { BoxComponent } from "./components/box/box.component";
 import { FormControl, FormGroupDirective } from "@angular/forms";
 import {
@@ -18,6 +19,7 @@ const OUTLET_COMPONENTS: { [key in DynamicForm.Components]: Type<DynamicForm.Com
   [DynamicForm.Components.Box]: BoxComponent,
   [DynamicForm.Components.Calendar]: CalendarOutletComponent,
   [DynamicForm.Components.InputNumber]: InputNumberOutletComponent,
+  [DynamicForm.Components.Dropdown]: DropdownFormOutletComponent,
 };
 
 function isComponentWithControl(

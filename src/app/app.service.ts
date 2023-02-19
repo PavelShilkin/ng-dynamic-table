@@ -1,15 +1,7 @@
-import { FormGroupDirective } from "@angular/forms";
-import {
-  ComponentFactoryResolver,
-  ComponentRef,
-  Injectable,
-  Type,
-  ViewContainerRef,
-} from "@angular/core";
+import { Injectable } from "@angular/core";
 import { of } from "rxjs";
 import { DynamicForm } from "./core/dynamic-form/dynamic-form.namespace";
 import { DynamicTable } from "./core/dynamic-table.namespace";
-import { BoxComponent } from "./core/dynamic-form/components/box/box.component";
 
 interface IExample {
   id: number;
@@ -42,6 +34,15 @@ export class AppService {
       children: [
         { type: DynamicForm.Components.InputNumber, name: "phone", label: "Телефон" },
         { type: DynamicForm.Components.Calendar, name: "date", label: "Дата" },
+      ],
+    },
+    {
+      type: DynamicForm.Components.Dropdown,
+      name: "gender",
+      label: "Пол",
+      options: [
+        { label: "Жен", value: "female" },
+        { label: "Муж", value: "male" },
       ],
     },
   ]);

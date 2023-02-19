@@ -14,6 +14,9 @@ import { CalendarOutletComponent } from "./components/calendar/calendar-form-out
 import { InputNumberComponent } from "./components/inputnumber/inputnumber.component";
 import { InputNumberOutletComponent } from "./components/inputnumber/inputnumber-form-outlet.component";
 import { InputNumberModule } from "primeng/inputnumber";
+import { DropdownComponent } from "./components/dropdown/dropdown.component";
+import { DropdownModule } from "primeng/dropdown";
+import { DropdownFormOutletComponent } from "./components/dropdown/dropdown-form-outlet.component";
 
 @NgModule({
   imports: [
@@ -23,6 +26,7 @@ import { InputNumberModule } from "primeng/inputnumber";
     ButtonModule,
     CalendarModule,
     InputNumberModule,
+    DropdownModule,
   ],
   exports: [DynamicFormComponent, CalendarComponent],
   declarations: [
@@ -35,6 +39,8 @@ import { InputNumberModule } from "primeng/inputnumber";
     CalendarOutletComponent,
     InputNumberComponent,
     InputNumberOutletComponent,
+    DropdownComponent,
+    DropdownFormOutletComponent,
   ],
 })
 export class DynamicFormModule {}
