@@ -2,29 +2,28 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Component, forwardRef, Input } from "@angular/core";
 
 @Component({
-  selector: "app-input",
+  selector: "app-inputnumber",
   template: `
     <span class="p-float-label">
-      <input
+      <p-inputNumber
         [id]="id"
-        pInputText
-        type="text"
-        [value]="_value"
-        (input)="value = $any($event.target).value"
+        [ngModel]="_value"
+        (onInput)="value = $event.value"
+        [useGrouping]="false"
         [placeholder]="placeholder"
-      />
+      ></p-inputNumber>
       <label [for]="id">{{ label }}</label>
     </span>
   `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => InputNumberComponent),
       multi: true,
     },
   ],
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputNumberComponent implements ControlValueAccessor {
   @Input()
   public label: string = "";
 
@@ -34,19 +33,19 @@ export class InputComponent implements ControlValueAccessor {
   @Input()
   public placeholder: string = "";
 
-  public set value(v: string) {
+  public set value(v: number) {
     this._value = v;
     this.onChange(v);
     this.onTouch();
   }
 
-  public _value = "";
+  public _value?: number;
 
-  public onChange!: (value: string) => void;
+  public onChange!: (value: number) => void;
 
   public onTouch!: () => void;
 
-  public registerOnChange(fn: (value: string) => void): void {
+  public registerOnChange(fn: (value: number) => void): void {
     this.onChange = fn;
   }
 
@@ -54,7 +53,7 @@ export class InputComponent implements ControlValueAccessor {
     this.onTouch = fn;
   }
 
-  public writeValue(value: string): void {
+  public writeValue(value: number): void {
     this._value = value;
   }
 }

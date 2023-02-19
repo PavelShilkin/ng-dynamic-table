@@ -6,7 +6,7 @@ import {
   OnChanges,
   Output,
 } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { DynamicForm } from "./dynamic-form.namespace";
 
 @Component({
@@ -27,7 +27,7 @@ export class DynamicFormComponent<T> implements OnChanges {
   public controls: DynamicForm.Control[] = [];
 
   @Input()
-  public class: string = "";
+  public class?: string = "";
 
   @Input()
   public submitLabel = "Создать";
@@ -43,15 +43,27 @@ export class DynamicFormComponent<T> implements OnChanges {
   constructor(private readonly fb: FormBuilder) {}
 
   ngOnChanges(): void {
-    const formGroup: { [key: string]: FormControl } = {};
-    this.controls.forEach((control) => {
-      formGroup[control.name] = this.fb.control(null);
-    });
-    this.form = this.fb.group(formGroup);
+    this.form = this.createFormGroup(this.controls);
+
     this.form.valueChanges.subscribe(console.log);
   }
 
   public submit(): void {
     this.onSubmit.emit(this.form.value);
+  }
+
+  private createFormGroup(
+    configs: DynamicForm.Control[],
+    fg: FormGroup = this.fb.group({})
+  ): FormGroup {
+    configs.forEach((config) => {
+      if (!("children" in config)) {
+        fg.addControl(config.name, this.fb.control(null));
+      } else {
+        this.createFormGroup(config.children, fg);
+      }
+    });
+
+    return fg;
   }
 }

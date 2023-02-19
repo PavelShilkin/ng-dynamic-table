@@ -1,23 +1,32 @@
 import { FormControl } from "@angular/forms";
 export namespace DynamicForm {
-  export type Control = BaseControl | BaseControlWithLabel;
+  export type Control = BaseControl | BoxControl;
+  export type Component = BaseControlComponent | BaseBoxComponent;
 
   export interface BaseControl {
     name: string;
     type: Components;
+    label?: string;
   }
 
-  export interface BaseControlWithLabel extends BaseControl {
-    id: string;
-    label: string;
+  export interface BoxControl extends BaseControl {
+    class?: string;
+    children: Control[];
   }
 
-  export interface BaseComponent {
+  export interface BaseControlComponent {
     config: BaseControl;
     control: FormControl;
   }
 
+  export interface BaseBoxComponent {
+    config: BoxControl;
+  }
+
   export enum Components {
-    Input,
+    InputText,
+    Box,
+    Calendar,
+    InputNumber,
   }
 }

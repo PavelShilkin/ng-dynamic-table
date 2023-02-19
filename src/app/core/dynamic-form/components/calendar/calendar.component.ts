@@ -2,29 +2,27 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Component, forwardRef, Input } from "@angular/core";
 
 @Component({
-  selector: "app-input",
+  selector: "app-calendar",
   template: `
     <span class="p-float-label">
-      <input
+      <p-calendar
         [id]="id"
-        pInputText
-        type="text"
-        [value]="_value"
-        (input)="value = $any($event.target).value"
+        [ngModel]="_value"
         [placeholder]="placeholder"
-      />
+        (onSelect)="value = $event"
+      ></p-calendar>
       <label [for]="id">{{ label }}</label>
     </span>
   `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => CalendarComponent),
       multi: true,
     },
   ],
 })
-export class InputComponent implements ControlValueAccessor {
+export class CalendarComponent implements ControlValueAccessor {
   @Input()
   public label: string = "";
 
@@ -34,19 +32,19 @@ export class InputComponent implements ControlValueAccessor {
   @Input()
   public placeholder: string = "";
 
-  public set value(v: string) {
+  public set value(v: Date) {
     this._value = v;
     this.onChange(v);
     this.onTouch();
   }
 
-  public _value = "";
+  public _value: Date | null = null;
 
-  public onChange!: (value: string) => void;
+  public onChange!: (value: Date) => void;
 
   public onTouch!: () => void;
 
-  public registerOnChange(fn: (value: string) => void): void {
+  public registerOnChange(fn: (value: Date) => void): void {
     this.onChange = fn;
   }
 
@@ -54,7 +52,7 @@ export class InputComponent implements ControlValueAccessor {
     this.onTouch = fn;
   }
 
-  public writeValue(value: string): void {
+  public writeValue(value: Date): void {
     this._value = value;
   }
 }

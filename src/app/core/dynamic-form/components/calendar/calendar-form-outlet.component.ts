@@ -3,13 +3,13 @@ import { FormControl } from "@angular/forms";
 import { DynamicForm } from "../../dynamic-form.namespace";
 
 @Component({
-  template: `<app-input
+  template: `<app-calendar
     [id]="config.name"
     [label]="config.label || ''"
     [formControl]="control"
-  ></app-input>`,
+  ></app-calendar>`,
 })
-export class InputOutletComponent implements DynamicForm.BaseControlComponent {
+export class CalendarOutletComponent implements DynamicForm.BaseControlComponent {
   @Input()
   public config!: DynamicForm.BaseControl;
 
