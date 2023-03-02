@@ -1,3 +1,4 @@
+import { DynamicFormUtils } from "./dynamic-form.utils";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -74,10 +75,10 @@ export class DynamicFormComponent<T> implements OnChanges {
     fg: FormGroup = this.fb.group({})
   ): FormGroup {
     configs.forEach((config) => {
-      if (!("children" in config)) {
-        fg.addControl(config.name, this.fb.control(null, config.validators));
-      } else {
+      if (DynamicFormUtils.isComponentWithChildren(config)) {
         this.createFormGroup(config.children, fg);
+      } else {
+        fg.addControl(config.name, this.fb.control(null, config.validators));
       }
     });
 

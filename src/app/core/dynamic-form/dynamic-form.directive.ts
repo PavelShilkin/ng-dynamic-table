@@ -13,6 +13,7 @@ import { InputOutletComponent } from "./components/inputtext/input-form-outlet.c
 import { DynamicForm } from "./dynamic-form.namespace";
 import { CalendarOutletComponent } from "./components/calendar/calendar-form-outlet.component";
 import { InputNumberOutletComponent } from "./components/inputnumber/inputnumber-form-outlet.component";
+import { DynamicFormUtils } from "./dynamic-form.utils";
 
 const OUTLET_COMPONENTS: { [key in DynamicForm.Components]: Type<DynamicForm.Component> } = {
   [DynamicForm.Components.InputText]: InputOutletComponent,
@@ -21,12 +22,6 @@ const OUTLET_COMPONENTS: { [key in DynamicForm.Components]: Type<DynamicForm.Com
   [DynamicForm.Components.InputNumber]: InputNumberOutletComponent,
   [DynamicForm.Components.Dropdown]: DropdownFormOutletComponent,
 };
-
-function isComponentWithControl(
-  cmpInstance: DynamicForm.Component
-): cmpInstance is DynamicForm.BaseControlComponent {
-  return "control" in cmpInstance;
-}
 
 @Directive({ selector: "[dynamicForm]" })
 export class DynamicFormDirective implements OnChanges {
@@ -46,7 +41,7 @@ export class DynamicFormDirective implements OnChanges {
 
       componentRef.instance.config = control;
 
-      if (isComponentWithControl(componentRef.instance)) {
+      if (DynamicFormUtils.isComponentWithControl(componentRef.instance)) {
         componentRef.instance.control = this.fgDir.form.get(control.name) as FormControl;
       }
     });
