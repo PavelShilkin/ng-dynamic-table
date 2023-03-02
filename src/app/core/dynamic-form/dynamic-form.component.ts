@@ -12,12 +12,18 @@ import { DynamicForm } from "./dynamic-form.namespace";
 @Component({
   selector: "app-dynamic-form[controls]",
   template: `
-    <form [class]="class" [formGroup]="form" (ngSubmit)="submit()">
+    <form [class]="class" [formGroup]="form" (ngSubmit)="submitForm()">
       <h2>{{ formTitle }}</h2>
       <ng-container [dynamicForm]="controls"></ng-container>
       <div class="flex align-items-center justify-content-end gap-1">
         <button pButton type="submit" [label]="submitLabel" [disabled]="form.invalid"></button>
-        <button pButton type="button" class="p-button-secondary" [label]="cancelLabel"></button>
+        <button
+          pButton
+          type="button"
+          class="p-button-secondary"
+          [label]="cancelLabel"
+          (click)="submitForm()"
+        ></button>
       </div>
     </form>
   `,
@@ -40,7 +46,10 @@ export class DynamicFormComponent<T> implements OnChanges {
   public cancelLabel = "Отменить";
 
   @Output()
-  public onSubmit = new EventEmitter<T>();
+  public submit = new EventEmitter<T>();
+
+  @Output()
+  public cancel = new EventEmitter<T>();
 
   public form!: FormGroup;
 
@@ -52,8 +61,12 @@ export class DynamicFormComponent<T> implements OnChanges {
     this.form.valueChanges.subscribe(console.log);
   }
 
-  public submit(): void {
-    this.onSubmit.emit(this.form.value);
+  public submitForm(): void {
+    this.submit.emit(this.form.value);
+  }
+
+  public cancelForm(): void {
+    this.cancel.emit(this.form.value);
   }
 
   private createFormGroup(
