@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { DynamicForm } from "../../dynamic-form.namespace";
 
@@ -8,6 +8,7 @@ import { DynamicForm } from "../../dynamic-form.namespace";
     [id]="config.name"
     [label]="config.label || ''"
     [formControl]="control"
+    [hasRequiredVF]="control | validatorRequired"
   ></app-input>`,
 })
 export class InputOutletComponent implements DynamicForm.BaseControlComponent {
@@ -16,4 +17,9 @@ export class InputOutletComponent implements DynamicForm.BaseControlComponent {
 
   @Input()
   public control: FormControl = new FormControl();
+
+  @HostBinding("class")
+  public get myClass(): string {
+    return "w-full";
+  }
 }

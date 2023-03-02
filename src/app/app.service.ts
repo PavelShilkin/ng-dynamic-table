@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Validators } from "@angular/forms";
 import { of } from "rxjs";
 import { DynamicForm } from "./core/dynamic-form/dynamic-form.namespace";
 import { DynamicTable } from "./core/dynamic-table.namespace";
@@ -29,7 +30,36 @@ export class AppService {
     {
       type: DynamicForm.Components.InputText,
       name: "name",
-      label: "Наименование",
+      label: "ФИО",
+      validators: [Validators.required],
+    },
+    {
+      type: DynamicForm.Components.Box,
+      name: "personInfo",
+      styleClass: "flex gap-1",
+      children: [
+        {
+          type: DynamicForm.Components.InputNumber,
+          name: "age",
+          label: "Возраст",
+          validators: [Validators.required],
+        },
+        {
+          type: DynamicForm.Components.Calendar,
+          name: "birthDate",
+          label: "Дата рождения",
+        },
+        {
+          type: DynamicForm.Components.Dropdown,
+          name: "gender",
+          label: "Пол",
+          validators: [Validators.required],
+          options: [
+            { label: "Жен", value: "female" },
+            { label: "Муж", value: "male" },
+          ],
+        },
+      ],
     },
     {
       type: DynamicForm.Components.Box,
@@ -41,20 +71,12 @@ export class AppService {
           name: "phone",
           label: "Телефон",
         },
+
         {
-          type: DynamicForm.Components.Calendar,
-          name: "date",
-          label: "Дата",
+          type: DynamicForm.Components.InputText,
+          name: "email",
+          label: "Электронная почта",
         },
-      ],
-    },
-    {
-      type: DynamicForm.Components.Dropdown,
-      name: "gender",
-      label: "Пол",
-      options: [
-        { label: "Жен", value: "female" },
-        { label: "Муж", value: "male" },
       ],
     },
   ]);

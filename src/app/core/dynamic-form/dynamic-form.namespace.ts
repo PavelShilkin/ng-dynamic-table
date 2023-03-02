@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, ValidatorFn } from "@angular/forms";
 
 export namespace DynamicForm {
   export type Control = BaseControl | SelectionControl | BoxControl;
@@ -9,6 +9,7 @@ export namespace DynamicForm {
     type: Components;
     label?: string;
     styleClass?: string;
+    validators?: ValidatorFn[];
   }
 
   export interface SelectionControl extends BaseControl {

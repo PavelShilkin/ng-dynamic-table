@@ -13,7 +13,7 @@ import { Component, forwardRef, Input } from "@angular/core";
         [useGrouping]="false"
         [placeholder]="placeholder"
       ></p-inputNumber>
-      <label [for]="id">{{ label }}</label>
+      <label [for]="id" [class.required]="hasRequiredVF">{{ label }}</label>
     </span>
   `,
   providers: [
@@ -42,6 +42,9 @@ export class InputNumberComponent implements ControlValueAccessor {
 
   @Input()
   public placeholder: string = "";
+
+  @Input()
+  public hasRequiredVF = false;
 
   public set value(v: number) {
     this._value = v;

@@ -13,8 +13,9 @@ import { DynamicForm } from "./dynamic-form.namespace";
   selector: "app-dynamic-form[controls]",
   template: `
     <form [class]="class" [formGroup]="form" (ngSubmit)="submit()">
+      <h2>{{ formTitle }}</h2>
       <ng-container [dynamicForm]="controls"></ng-container>
-      <div class="flex align-items-center justify-content-end col-12 gap-1">
+      <div class="flex align-items-center justify-content-end gap-1">
         <button pButton type="submit" [label]="submitLabel" [disabled]="form.invalid"></button>
         <button pButton type="button" class="p-button-secondary" [label]="cancelLabel"></button>
       </div>
@@ -28,6 +29,9 @@ export class DynamicFormComponent<T> implements OnChanges {
 
   @Input()
   public class?: string = "";
+
+  @Input()
+  public formTitle = "";
 
   @Input()
   public submitLabel = "Создать";
@@ -58,7 +62,7 @@ export class DynamicFormComponent<T> implements OnChanges {
   ): FormGroup {
     configs.forEach((config) => {
       if (!("children" in config)) {
-        fg.addControl(config.name, this.fb.control(null));
+        fg.addControl(config.name, this.fb.control(null, config.validators));
       } else {
         this.createFormGroup(config.children, fg);
       }

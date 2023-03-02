@@ -16,7 +16,7 @@ import { Component, forwardRef, Input } from "@angular/core";
         [autoDisplayFirst]="false"
         (onChange)="value = $event.value"
       ></p-dropdown>
-      <label [for]="id">{{ label }}</label>
+      <label [for]="id" [class.required]="hasRequiredVF">{{ label }}</label>
     </span>
   `,
   providers: [
@@ -45,6 +45,9 @@ export class DropdownComponent<T, Y> implements ControlValueAccessor {
 
   @Input()
   public options: Y[] = [];
+
+  @Input()
+  public hasRequiredVF = false;
 
   public set value(v: T) {
     this._value = v;

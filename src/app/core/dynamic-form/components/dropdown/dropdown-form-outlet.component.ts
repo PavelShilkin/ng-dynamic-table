@@ -8,9 +8,10 @@ import { DynamicForm } from "../../dynamic-form.namespace";
     [id]="config.name"
     [label]="config.label || ''"
     [formControl]="control"
-    [optionLabel]="config.optionLabel || ''"
-    [optionValue]="config.optionValue || ''"
+    [optionLabel]="config.optionLabel || 'label'"
+    [optionValue]="config.optionValue || 'value'"
     [options]="config.options"
+    [hasRequiredVF]="control | validatorRequired"
   ></app-dropdown>`,
 })
 export class DropdownFormOutletComponent implements DynamicForm.SelectionControlComponent {

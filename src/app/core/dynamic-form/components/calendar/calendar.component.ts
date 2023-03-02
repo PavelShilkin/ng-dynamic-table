@@ -12,7 +12,7 @@ import { Component, forwardRef, Input } from "@angular/core";
         [placeholder]="placeholder"
         (onSelect)="value = $event"
       ></p-calendar>
-      <label [for]="id">{{ label }}</label>
+      <label [for]="id" [class.required]="hasRequiredVF">{{ label }}</label>
     </span>
   `,
   providers: [
@@ -32,6 +32,9 @@ export class CalendarComponent implements ControlValueAccessor {
 
   @Input()
   public placeholder: string = "";
+
+  @Input()
+  public hasRequiredVF = false;
 
   public set value(v: Date) {
     this._value = v;

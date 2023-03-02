@@ -7,6 +7,7 @@ import { DynamicForm } from "../../dynamic-form.namespace";
     [id]="config.name"
     [label]="config.label || ''"
     [formControl]="control"
+    [hasRequiredVF]="control | validatorRequired"
   ></app-calendar>`,
 })
 export class CalendarOutletComponent implements DynamicForm.BaseControlComponent {

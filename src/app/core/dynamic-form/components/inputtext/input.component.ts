@@ -1,4 +1,4 @@
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Component, forwardRef, Input } from "@angular/core";
 
 @Component({
@@ -14,7 +14,7 @@ import { Component, forwardRef, Input } from "@angular/core";
         (input)="value = $any($event.target).value"
         [placeholder]="placeholder"
       />
-      <label [for]="id">{{ label }}</label>
+      <label [for]="id" [class.required]="hasRequiredVF">{{ label }}</label>
     </span>
   `,
   providers: [
@@ -34,6 +34,9 @@ export class InputComponent implements ControlValueAccessor {
 
   @Input()
   public placeholder: string = "";
+
+  @Input()
+  public hasRequiredVF = false;
 
   public set value(v: string) {
     this._value = v;

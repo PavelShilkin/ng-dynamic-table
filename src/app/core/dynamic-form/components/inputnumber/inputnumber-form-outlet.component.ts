@@ -8,6 +8,7 @@ import { DynamicForm } from "../../dynamic-form.namespace";
     [id]="config.name"
     [label]="config.label || ''"
     [formControl]="control"
+    [hasRequiredVF]="control | validatorRequired"
   ></app-inputnumber>`,
 })
 export class InputNumberOutletComponent implements DynamicForm.BaseControlComponent {

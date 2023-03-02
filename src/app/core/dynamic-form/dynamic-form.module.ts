@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { InputTextModule } from "primeng/inputtext";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -17,9 +18,11 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { DropdownComponent } from "./components/dropdown/dropdown.component";
 import { DropdownModule } from "primeng/dropdown";
 import { DropdownFormOutletComponent } from "./components/dropdown/dropdown-form-outlet.component";
+import { ValidatorRequiredPipe } from "./pipes/validator-required.pipe";
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
@@ -41,6 +44,7 @@ import { DropdownFormOutletComponent } from "./components/dropdown/dropdown-form
     InputNumberOutletComponent,
     DropdownComponent,
     DropdownFormOutletComponent,
+    ValidatorRequiredPipe,
   ],
 })
 export class DynamicFormModule {}
